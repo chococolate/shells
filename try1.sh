@@ -13,7 +13,7 @@ function help()
 }
 function reduceQuality()
 {
-	images=($(find "$2" -regex '.*\.jpeg'))
+	images=($(find "$2" -regex '.*\.jpg'))
 	for m in "${images[@]}";
 	do 
 		head=${m%.*}
@@ -24,19 +24,20 @@ function reduceQuality()
 }
 function resolvingPower()
 {
-	images=($(find "$2" -regex '.*\.jpg\|.*\.svg\|.*\.png'))
-	for m in "${image[@]}";
+	jpgs=($(find "$2" -regex '.*\.jpg\|.*\.svg\|.*\.png'))
+	for i in "${jpgs[@]}";
 	do 
-		head=${m%.*}
-		tail=${m##*.}
-		convert $m -resize $1 $head'_'$1'rp.'$tail
-		echo $m 'is compressed into' $head'_'$1'rp.'$tail
-	done	
+		head=${i%.*}
+		tail=${i##*.}
+		convert $i -resize $1 $head'_'$1'rp.'$tail
+		echo $i 'is compressed into ' $head'_'$1'rp.'$tail	
+
+	done
 }
 function watermark()
 {
 	images=($(find "$2" -regex '.*\.jpg\|.*\.svg\|.*\.png\|.*\.jpeg'))
-	for m in "${image[@]}";
+	for m in "${images[@]}";
 	do 
 		head=${m%.*}
 		tail=${m##*.}
@@ -52,10 +53,10 @@ function rename()
 			for m in "${images[@]}";
 			do
 				direc=${m%/*}
-				file_name=&{m%.*}
+				file_name=${m%.*}
 				tail=${m##*.}
 				head=${file_name##*/}
-				mv $m $direc'/'$2$head'.'$tail
+				mv $m $2$head'.'$tail
 				echo "head is added"
 			done
 		;;
