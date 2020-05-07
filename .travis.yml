@@ -1,0 +1,40 @@
+<<<<<<< HEAD
+language: bash
+
+before_install:
+        - sudo apt-get install imagemagick
+        - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/worldcupplayerinfo.tsv"
+        - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/web_log.tsv.7z"
+        - sudo apt-get install p7zip-full
+        - 7z x -ot web_log.tsv.7z
+
+script:
+        - echo "try1.sh"
+        - bash try1.sh -h
+        - bash try1.sh -p 20 1.png
+        - bash try1.sh -w "miss" 1.png
+        - bash try1.sh -r head "hi-" 1.png
+        - bash try1.sh -r tail "-ih" 1.png
+        - bash try1.sh -t 1.png
+        - echo "try2.sh"
+        - bash try2.sh -h
+        - bash try2.sh -a
+        - bash try2.sh -p
+        - bash try2.sh -n 
+        - bash try2.sh -m
+        - echo "try3.sh"
+        - bash try3.sh -h 
+        - bash try3.sh -a
+        - bash try3.sh -b
+        - bash try3.sh -c
+        - bash try3.sh -d 
+        - bash try3.sh -e
+        - bash try3.sh -u /whats-new.html
+
+
+
+
+
+notifications:
+  email:
+    on_success: never
